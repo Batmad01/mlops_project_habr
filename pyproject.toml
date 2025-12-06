@@ -1,7 +1,7 @@
 [project]
 name = "mlops-project"
 version = "0.1.0"
-description = "Add your description here"
+description = "Habr articles classifier"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
@@ -10,6 +10,35 @@ dependencies = [
     "ipykernel>=7.1.0",
     "numpy>=2.3.5",
     "pandas>=2.3.3",
+    "pre-commit>=4.5.0",
+    "prettier>=0.0.7",
+    "ruff>=0.14.8",
     "scikit-learn>=1.7.2",
     "torch>=2.9.1",
 ]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = [
+    # isort
+    "I",
+    # pycodestyle
+    "E", "W",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP"
+]
+ignore = []
+
+# автоисправление в случае ошибок
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+docstring-code-format = true
+
+[tool.prettier]
+printWidth = 80
+proseWrap = "always"
