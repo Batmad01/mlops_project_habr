@@ -1,6 +1,6 @@
-def main():
-    print("Hello from mlops-project!")
-
+import os
+import sys
 
 if __name__ == "__main__":
-    main()
+    args = [a for a in sys.argv[1:] if a != "train"]
+    os.system(f"uv run python -m habr_articles_classifier.train {' '.join(args)}")
