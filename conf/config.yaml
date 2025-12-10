@@ -1,0 +1,31 @@
+expname: habr_pytorch
+device: cuda
+model_name: habr_model
+
+hydra:
+  run:
+    dir: logs/hydra/${expname}/${now:%Y-%m-%d-%H-%M-%S}
+
+train_config:
+  # Пути
+  data_path: ./data/dataset.parquet # Полный датасет, нужно 32 гб оперативки
+  sample_path: ./data/sample.parquet # Сэмпл данных
+
+  # Параметры модели
+  model_name: "cointegrated/rubert-tiny2"
+  max_length: 1024
+  batch_size: 16
+  num_workers: 0
+
+  # Параметры обучения
+  max_epochs: 3
+  precision: "bf16-mixed"
+  learning_rate: 2e-4
+  weight_decay: 1e-2
+
+  # Мониторинг
+  dirpath: "checkpoints"
+  filename: "best-model"
+  save_top_k: 1
+  metric: "val_f1"
+  mode: "max"
